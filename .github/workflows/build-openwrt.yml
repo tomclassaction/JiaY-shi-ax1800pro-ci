@@ -86,6 +86,7 @@ jobs:
           libpython3-dev qemu-utils rsync scons squashfs-tools subversion swig texinfo uglifyjs upx-ucl unzip \
           vim wget xmlto xxd zlib1g-dev python3-setuptools
 
+          sudo apt-get install libnss3-dev
 
           sudo -E apt-get -qq install mkisofs wodim cdrkit-doc libfido2-dev
           sudo -E apt update -y
