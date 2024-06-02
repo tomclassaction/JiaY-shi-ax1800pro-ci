@@ -88,6 +88,16 @@ jobs:
 
           sudo apt-get install libnss3-dev
 
+          sudo apt-get update
+          sudo apt-get install build-essential libncurses5-dev zlib1g-dev gawk git gettext libssl-dev xsltproc libxml-parser-perl unzip -y
+          sudo apt-get install linux-headers-$(uname -r) -y
+          sudo apt-get install flex bison -y
+          sudo apt-get install bc -y
+          sudo apt-get install gcc g++ -y
+          sudo apt-get install make -y
+          sudo apt-get install u-boot-tools -y
+
+
           sudo -E apt-get -qq install mkisofs wodim cdrkit-doc libfido2-dev
           sudo -E apt update -y
           sudo -E apt full-upgrade -y
