@@ -17,4 +17,4 @@
 sed -i 's/192.168.1.1/192.168.123.23/g' package/base-files/files/bin/config_generate
 
 # 默认开启 wifi
-sed -i 's/disabled=1/disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
+# sed -i 's/disabled=1/disabled=0/g' package/kernel/mac80211/files/lib/wifi/mac80211.sh
