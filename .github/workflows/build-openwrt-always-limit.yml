@@ -171,7 +171,7 @@ jobs:
         run: |
           cd openwrt
           echo -e "$(nproc) thread compile"
-          make -j$(nproc) || make -j1 || make -j1 V=s || max_retries=10; max_time=6000; count=0; start_time=$(date +%s); make V=s; while [ $? -ne 0 ] && { [ $count -lt $max_retries ] && current_time=$(date +%s) && elapsed_time=$((current_time - start_time)) && [ $elapsed_time -lt $max_time ]; }; do count=$((count + 1)); echo "Retrying... ($count/$max_retries, elapsed time: $elapsed_time seconds)"; make V=s; done; [ $? -eq 0 ] && echo "Build succeeded." || echo "Failed after $count attempts and $elapsed_time seconds."
+          make -j$(nproc) || make -j1 || make package/kernel/qca-ssdk/Makefile V=s; make package/kernel/qca-nss-dp/Makefile V=s; make feeds/nss_packages/qca/qca-ssdk-shell/compile V=s || max_retries=10; max_time=6000; count=0; start_time=$(date +%s); make V=s; while [ $? -ne 0 ] && { [ $count -lt $max_retries ] && current_time=$(date +%s) && elapsed_time=$((current_time - start_time)) && [ $elapsed_time -lt $max_time ]; }; do count=$((count + 1)); echo "Retrying... ($count/$max_retries, elapsed time: $elapsed_time seconds)"; make V=s; done; [ $? -eq 0 ] && echo "Build succeeded." || echo "Failed after $count attempts and $elapsed_time seconds."
           echo "status=success" >> $GITHUB_OUTPUT
           grep '^CONFIG_TARGET.*DEVICE.*=y' .config | sed -r 's/.*DEVICE_(.*)=y/\1/' > DEVICE_NAME
           [ -s DEVICE_NAME ] && echo "DEVICE_NAME=_$(cat DEVICE_NAME)" >> $GITHUB_ENV
